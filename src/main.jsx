@@ -1,9 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import { ThemeProvider } from 'styled-components'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+import GlobalStyle from './styles/global'
+import theme from './styles/theme'
+
+import { EditDish } from './pages/EditDish'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <EditDish />
+    </ThemeProvider>
   </React.StrictMode>,
 )
