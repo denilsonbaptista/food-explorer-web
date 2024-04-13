@@ -15,6 +15,32 @@ export default createGlobalStyle`
   }
 
   body {
+    color: ${({ theme }) => theme.colors.light_100};
     background-color: ${({ theme }) => theme.colors.dark_400};
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    width: min(90%, 92rem);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button, a {
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+
+  button:hover, a:hover {
+    filter: brightness(0.9);
+  }
+
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
+    .wrapper {
+      margin: 0 auto;
+      width: min(90%, 112rem);
+    }
   }
 `
