@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './styles/global'
 import theme from './styles/theme'
 
-import { EditDish } from './pages/EditDish'
+import { NewDish } from './pages/NewDish'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <EditDish />
+      <NewDish />
     </ThemeProvider>
   </React.StrictMode>,
 )
