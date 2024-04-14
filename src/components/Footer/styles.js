@@ -24,10 +24,34 @@ export const Container = styled.div`
       line-height: normal;
     }
   }
+
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
+    font-size: 2.4rem;
+
+    > div {
+      > p:last-child {
+        font-size: 1.4rem;
+      }
+    }
+  }
 `
 
 export const Logotype = styled.div`
   display: flex;
   align-items: center;
   gap: 0.6rem;
+
+  > img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
+    gap: 1rem;
+
+    > img {
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+  }
 `

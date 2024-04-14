@@ -1,4 +1,4 @@
-import logoGray from '../../assets/polygon-gray.svg'
+import logoGray from '../../assets/polygon-gray.png'
 
 import { Container, Logotype } from './styles'
 

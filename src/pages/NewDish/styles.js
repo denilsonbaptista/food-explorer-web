@@ -220,6 +220,10 @@ export const Buttons = styled.div`
 
   margin-bottom: 3.5rem;
 
+  > button {
+    background-color: ${({ theme }) => theme.colors.tints.tomato_400};
+  }
+
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     justify-content: flex-end;
 

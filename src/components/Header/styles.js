@@ -14,12 +14,20 @@ export const Container = styled.header`
     align-items: center;
   }
 
+  button:nth-of-type(2) {
+    display: none;
+  }
+
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     padding: 2.4rem 0;
 
     div.wrapper {
       grid-template-columns: max-content 1fr 20rem max-content;
       gap: 3.2rem;
+    }
+
+    button:nth-of-type(2) {
+      display: block;
     }
   }
 `
@@ -129,28 +137,6 @@ export const Search = styled.div`
 
       color: ${({ theme }) => theme.colors.light_500};
     }
-  }
-`
-
-export const Button = styled.button`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.screens.lg}) {
-    display: block;
-
-    padding: 1.2rem 0;
-
-    border: none;
-    border-radius: 0.5rem;
-
-    color: ${({ theme }) => theme.colors.light_100};
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 2.4rem;
-
-    background-color: ${({ theme }) => theme.colors.tints.tomato_100};
   }
 `
 

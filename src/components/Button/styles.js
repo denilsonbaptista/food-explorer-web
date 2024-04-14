@@ -15,6 +15,5 @@ export const Container = styled.button`
   border-radius: 0.5rem;
 
   color: ${({ theme }) => theme.colors.light_100};
-  background-color: ${({ theme, $isDelete }) =>
-    $isDelete ? theme.colors.dark_800 : theme.colors.tints.tomato_400};
+  background-color: ${({ theme }) => theme.colors.tints.tomato_100};
 `

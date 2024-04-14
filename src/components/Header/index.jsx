@@ -2,7 +2,8 @@ import logo from '../../assets/polygon.svg'
 
 import { List, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
 
-import { Container, Content, Menu, Search, Button, Logout } from './styles'
+import { Button } from '../Button'
+import { Container, Content, Menu, Search, Logout } from './styles'
 
 export function Header() {
   return (
@@ -24,7 +25,7 @@ export function Header() {
           <input type="text" placeholder="Busque por pratos ou ingredientes" />
         </Search>
 
-        <Button>Novo Prato</Button>
+        <Button title="Novo Prato" />
 
         <Logout>
           <SignOut size={32} color="#FFFFFF" />
