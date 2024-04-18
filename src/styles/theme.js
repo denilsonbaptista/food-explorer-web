@@ -31,8 +31,11 @@ export default {
     },
 
     gradients: {
-      100: 'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)',
-      200: 'linear-gradient(180deg, #091E26 0%, #00131C 100%)',
+      linear_100_90deg:
+        'linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)',
+      linear_100_270deg:
+        'linear-gradient(270deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%)',
+      linear_200: 'linear-gradient(180deg, #091E26 0%, #00131C 100%)',
     },
   },
 

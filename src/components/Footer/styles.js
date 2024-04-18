@@ -15,6 +15,7 @@ export const Container = styled.div`
   > div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     > p:last-child {
       color: ${({ theme }) => theme.colors.light_100};
