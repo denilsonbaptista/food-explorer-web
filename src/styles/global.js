@@ -17,6 +17,12 @@ export default createGlobalStyle`
   body {
     color: ${({ theme }) => theme.colors.light_100};
     background-color: ${({ theme }) => theme.colors.dark_400};
+
+    overflow: overlay;
+  }
+
+  body.menu-open {
+    overflow: hidden;
   }
 
   .wrapper {

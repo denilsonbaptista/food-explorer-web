@@ -1,15 +1,26 @@
 import logo from '../../assets/polygon.svg'
 
-import { List, MagnifyingGlass, SignOut } from '@phosphor-icons/react'
+import { useState } from 'react'
+
+import { List, SignOut } from '@phosphor-icons/react'
 
 import { Button } from '../Button'
-import { Container, Content, Menu, Search, Logout } from './styles'
+import { SideMenu } from '../SideMenu'
+import { InputSearch } from '../InputSearch'
+import { Container, Content, Search, Menu, Logout } from './styles'
 
 export function Header() {
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
+
   return (
-    <Container>
+    <Container data-menu-is-open={menuIsOpen}>
+      <SideMenu
+        menuIsOpen={menuIsOpen}
+        onCloseMenu={() => setMenuIsOpen(false)}
+      />
+
       <div className="wrapper">
-        <Menu>
+        <Menu onClick={() => setMenuIsOpen(true)}>
           <List size={24} color="#FFFFFF" />
         </Menu>
 
@@ -20,9 +31,10 @@ export function Header() {
         </Content>
 
         <Search>
-          <MagnifyingGlass size={24} color="#C4C4CC" />
-
-          <input type="text" placeholder="Busque por pratos ou ingredientes" />
+          <InputSearch
+            type="text"
+            placeholder="Busque por pratos ou ingredientes"
+          />
         </Search>
 
         <Button title="Novo Prato" />

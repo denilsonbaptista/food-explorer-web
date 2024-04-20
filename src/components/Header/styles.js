@@ -14,8 +14,13 @@ export const Container = styled.header`
     align-items: center;
   }
 
-  button:nth-of-type(2) {
+  div.wrapper button:nth-of-type(2) {
     display: none;
+  }
+
+  &[data-menu-is-open='true'] {
+    display: initial;
+    padding: 0;
   }
 
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
@@ -26,8 +31,13 @@ export const Container = styled.header`
       gap: 3.2rem;
     }
 
-    button:nth-of-type(2) {
+    div.wrapper button:nth-of-type(2) {
       display: block;
+    }
+
+    &[data-menu-is-open='true'] {
+      display: flex;
+      padding: 2.4rem 0;
     }
   }
 `
@@ -107,36 +117,7 @@ export const Search = styled.div`
   display: none;
 
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
-    background-color: ${({ theme }) => theme.colors.dark_900};
-    border-radius: 0.5rem;
-
-    padding: 1.2rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.4rem;
-
-    &:focus-within {
-      outline: 1px solid #ffffff;
-    }
-
-    > input {
-      background: none;
-      border: none;
-
-      width: 28rem;
-
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.6rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 100%;
-
-      outline: none;
-
-      color: ${({ theme }) => theme.colors.light_500};
-    }
+    display: block;
   }
 `
 
