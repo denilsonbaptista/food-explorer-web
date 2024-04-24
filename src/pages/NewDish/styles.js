@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-rows: min-content 1fr min-content;
 
-  a {
+  div.wrapper a:first-child {
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     font-style: normal;
@@ -24,7 +24,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
-    a {
+    div.wrapper a:first-child {
       margin-top: 4rem;
     }
   }

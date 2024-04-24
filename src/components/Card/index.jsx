@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { PencilSimple } from '@phosphor-icons/react'
 
 import { Container, Content } from './styles'
@@ -5,16 +6,16 @@ import { Container, Content } from './styles'
 export function Card({ img, title, description, price }) {
   return (
     <Container>
-      <Content>
+      <Content to="dish/5">
         <img src={img} alt="" />
 
         <h3>{title}</h3>
         <p>{description}</p>
         <span>{price}</span>
 
-        <button>
-          <PencilSimple size={32} color="#fcfcfc" />
-        </button>
+        <Link to="/edit/5">
+          <PencilSimple />
+        </Link>
       </Content>
     </Container>
   )

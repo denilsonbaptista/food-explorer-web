@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { CaretLeft, UploadSimple } from '@phosphor-icons/react'
 
 import { Header } from '../../components/Header'
@@ -26,10 +27,10 @@ export function EditDish() {
       <Header />
 
       <div className="wrapper">
-        <a href="/">
+        <Link to={-1}>
           <CaretLeft size={24} />
           Voltar
-        </a>
+        </Link>
 
         <Form>
           <fieldset>

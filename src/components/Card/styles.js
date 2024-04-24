@@ -1,18 +1,19 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   padding: 2.4rem;
   width: 30rem;
+`;
 
-  position: relative;
-`
-
-export const Content = styled.div`
+export const Content = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+
+  position: relative;
 
   text-align: center;
 
@@ -48,13 +49,16 @@ export const Content = styled.div`
     color: ${({ theme }) => theme.colors.tints.cake_200};
   }
 
-  button {
+  a {
     background: none;
     border: none;
 
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -1.5rem;
+    right: -1rem;
+
+    font-size: 3.2rem;
+    color: ${({ theme }) => theme.colors.light_100};
   }
 
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
@@ -70,4 +74,4 @@ export const Content = styled.div`
       font-size: 3.2rem;
     }
   }
-`
+`;

@@ -1,10 +1,16 @@
+import { Link } from 'react-router-dom'
 import { CaretLeft } from '@phosphor-icons/react'
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
-import { Button } from '../../components/Button'
 import { Tag } from '../../components/Tag'
-import { Container, Details, Descriptions, Ingredient } from './styles'
+import {
+  Container,
+  Details,
+  Descriptions,
+  Ingredient,
+  EditDish,
+} from './styles'
 
 import salad from '../../assets/salad.png'
 
@@ -14,10 +20,10 @@ export function Dish() {
       <Header />
 
       <div className="wrapper">
-        <a href="/">
-          <CaretLeft size={32} color="#fcfcfc" />
+        <Link to={-1}>
+          <CaretLeft size={32} />
           voltar
-        </a>
+        </Link>
 
         <Details>
           <img src={salad} alt="" />
@@ -39,7 +45,7 @@ export function Dish() {
               <Tag title="tomate" />
             </Ingredient>
 
-            <Button title="Editar prato" />
+            <EditDish to="/edit/5">Editar prato</EditDish>
           </Descriptions>
         </Details>
       </div>

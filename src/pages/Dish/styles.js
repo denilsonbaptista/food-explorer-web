@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   display: grid;
@@ -6,7 +7,7 @@ export const Container = styled.div`
 
   height: 100vh;
 
-  a {
+  div.wrapper a:first-child {
     display: flex;
     align-items: center;
 
@@ -58,13 +59,13 @@ export const Descriptions = styled.div`
 
   width: min(32rem, 90%);
 
-  h2 {
+  > h2 {
     font-size: 2.7rem;
     font-weight: 500;
     line-height: 140%;
   }
 
-  p {
+  > p {
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 140%;
@@ -76,11 +77,11 @@ export const Descriptions = styled.div`
     width: initial;
     text-align: start;
 
-    h2 {
+    > h2 {
       font-size: 4rem;
     }
 
-    p {
+    > p {
       font-size: 2rem;
     }
 
@@ -101,4 +102,23 @@ export const Ingredient = styled.div`
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     justify-content: flex-start;
   }
+`
+
+export const EditDish = styled(Link)`
+  width: 100%;
+
+  padding: 1.2rem 2.4rem;
+
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.4rem;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  color: ${({ theme }) => theme.colors.light_100};
+  background-color: ${({ theme }) => theme.colors.tints.tomato_100};
 `

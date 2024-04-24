@@ -4,10 +4,9 @@ import { useState } from 'react'
 
 import { List, SignOut } from '@phosphor-icons/react'
 
-import { Button } from '../Button'
 import { SideMenu } from '../SideMenu'
 import { InputSearch } from '../InputSearch'
-import { Container, Content, Search, Menu, Logout } from './styles'
+import { Container, Content, Search, Menu, NewDish, Logout } from './styles'
 
 export function Header() {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -21,10 +20,10 @@ export function Header() {
 
       <div className="wrapper">
         <Menu onClick={() => setMenuIsOpen(true)}>
-          <List size={24} color="#FFFFFF" />
+          <List />
         </Menu>
 
-        <Content>
+        <Content to="/">
           <img src={logo} alt="Logo food explorer" />
           <h1>food explorer</h1>
           <span>admin</span>
@@ -37,10 +36,10 @@ export function Header() {
           />
         </Search>
 
-        <Button title="Novo Prato" />
+        <NewDish to="/new"> Novo Prato</NewDish>
 
         <Logout>
-          <SignOut size={32} color="#FFFFFF" />
+          <SignOut />
         </Logout>
       </div>
     </Container>

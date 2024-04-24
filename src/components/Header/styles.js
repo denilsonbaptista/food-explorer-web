@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.header`
   display: flex;
@@ -14,10 +15,6 @@ export const Container = styled.header`
     align-items: center;
   }
 
-  div.wrapper button:nth-of-type(2) {
-    display: none;
-  }
-
   &[data-menu-is-open='true'] {
     display: initial;
     padding: 0;
@@ -31,10 +28,6 @@ export const Container = styled.header`
       gap: 3.2rem;
     }
 
-    div.wrapper button:nth-of-type(2) {
-      display: block;
-    }
-
     &[data-menu-is-open='true'] {
       display: flex;
       padding: 2.4rem 0;
@@ -42,7 +35,7 @@ export const Container = styled.header`
   }
 `
 
-export const Content = styled.div`
+export const Content = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +101,9 @@ export const Menu = styled.button`
   background: none;
   border: none;
 
+  font-size: 2.4rem;
+  color: ${({ theme }) => theme.colors.light_100};
+
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     display: none;
   }
@@ -121,11 +117,39 @@ export const Search = styled.div`
   }
 `
 
-export const Logout = styled.button`
+export const NewDish = styled(Link)`
+  width: 100%;
+
+  padding: 1.2rem 0;
+
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.4rem;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  color: ${({ theme }) => theme.colors.light_100};
+  background-color: ${({ theme }) => theme.colors.tints.tomato_100};
+
   display: none;
 
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     display: block;
+  }
+`
+
+export const Logout = styled.button`
+  display: none;
+
+  font-size: 3.2rem;
+  color: ${({ theme }) => theme.colors.light_100};
+
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
+    display: flex;
 
     background: none;
     border: none;
