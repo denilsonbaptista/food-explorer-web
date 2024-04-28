@@ -1,15 +1,26 @@
 import logo from '../../assets/polygon.svg'
 
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { List, SignOut } from '@phosphor-icons/react'
+
+import { useAuth } from '../../hooks/auth'
 
 import { SideMenu } from '../SideMenu'
 import { InputSearch } from '../InputSearch'
 import { Container, Content, Search, Menu, NewDish, Logout } from './styles'
 
 export function Header() {
+  const { signOut } = useAuth()
+  const navigation = useNavigate()
+
   const [menuIsOpen, setMenuIsOpen] = useState(false)
+
+  function handleSignOut() {
+    navigation('/')
+    signOut()
+  }
 
   return (
     <Container data-menu-is-open={menuIsOpen}>
@@ -38,7 +49,7 @@ export function Header() {
 
         <NewDish to="/new"> Novo Prato</NewDish>
 
-        <Logout>
+        <Logout onClick={handleSignOut}>
           <SignOut />
         </Logout>
       </div>

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { Home } from '../pages/Home'
 import { Dish } from '../pages/Dish'
@@ -12,6 +12,8 @@ export function AppRoutes() {
       <Route path="/new" element={<NewDish />} />
       <Route path="/dish/:id" element={<Dish />} />
       <Route path="/edit/:id" element={<EditDish />} />
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
 }
