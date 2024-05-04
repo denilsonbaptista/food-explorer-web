@@ -131,9 +131,9 @@ export function NewDish() {
                   <label htmlFor="category">Categoria</label>
                   <Select id="category" value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>
                     <option value="">Selecione</option>
-                    <option value="Refeição">Refeição</option>
+                    <option value="Refeições">Refeições</option>
                     <option value="Sobremesas">Sobremesas</option>
-                    <option value="Sobremesas">Bebidas</option>
+                    <option value="Bebidas">Bebidas</option>
                   </Select>
                 </Wrapper>
               </RowOne>

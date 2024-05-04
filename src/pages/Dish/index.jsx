@@ -4,15 +4,7 @@ import { CaretLeft } from '@phosphor-icons/react'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Tag } from '../../components/Tag'
-import {
-  Container,
-  Details,
-  Descriptions,
-  Ingredient,
-  EditDish,
-} from './styles'
-
-import salad from '../../assets/salad.png'
+import { Container, Details, Descriptions, Ingredient, EditDish } from './styles'
 
 export function Dish() {
   return (
@@ -26,15 +18,12 @@ export function Dish() {
         </Link>
 
         <Details>
-          <img src={salad} alt="" />
+          <img src="http://localhost:3333/files/e26d12370cc18d86bb34-image%203.png" alt="" />
 
           <Descriptions>
             <h2>Salada Ravanello</h2>
 
-            <p>
-              Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
-              O pão naan dá um toque especial.
-            </p>
+            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
 
             <Ingredient>
               <Tag title="alface" />

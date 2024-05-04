@@ -1,21 +1,24 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   padding: 2.4rem;
   width: 30rem;
-`;
 
-export const Content = styled(Link)`
+  position: relative;
+`
+
+export const Content = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
 
-  position: relative;
-
   text-align: center;
+
+  background: transparent;
+  border: none;
 
   img {
     width: 17.6rem;
@@ -49,18 +52,6 @@ export const Content = styled(Link)`
     color: ${({ theme }) => theme.colors.tints.cake_200};
   }
 
-  a {
-    background: none;
-    border: none;
-
-    position: absolute;
-    top: -1.5rem;
-    right: -1rem;
-
-    font-size: 3.2rem;
-    color: ${({ theme }) => theme.colors.light_100};
-  }
-
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     h3 {
       font-size: 2.4rem;
@@ -74,4 +65,16 @@ export const Content = styled(Link)`
       font-size: 3.2rem;
     }
   }
-`;
+`
+
+export const LinkToDish = styled(Link)`
+  background: none;
+  border: none;
+
+  position: absolute;
+  top: -1.5rem;
+  right: -1rem;
+
+  font-size: 3.2rem;
+  color: ${({ theme }) => theme.colors.light_100};
+`
