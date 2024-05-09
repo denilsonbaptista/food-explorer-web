@@ -105,6 +105,11 @@ export function EditDish() {
     }
   }
 
+  function handleDeleteDish() {
+    api.delete(`foods/${params.id}`)
+    navigate('/')
+  }
+
   useEffect(() => {
     async function fetchData() {
       const response = await api.get(`foods/${params.id}`)
@@ -228,7 +233,11 @@ export function EditDish() {
               </Wrapper>
 
               <Buttons>
-                <Button title="Excluir prato" isDelete />
+                <Button
+                  title="Excluir prato"
+                  isDelete
+                  onClick={handleDeleteDish}
+                />
                 <Button title="Salvar alterações" type="submit" />
               </Buttons>
             </Content>
