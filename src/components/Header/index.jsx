@@ -11,7 +11,7 @@ import { SideMenu } from '../SideMenu'
 import { InputSearch } from '../InputSearch'
 import { Container, Content, Search, Menu, NewDish, Logout } from './styles'
 
-export function Header() {
+export function Header({ onChange }) {
   const { signOut } = useAuth()
   const navigation = useNavigate()
 
@@ -44,6 +44,7 @@ export function Header() {
           <InputSearch
             type="text"
             placeholder="Busque por pratos ou ingredientes"
+            onChange={onChange}
           />
         </Search>
 

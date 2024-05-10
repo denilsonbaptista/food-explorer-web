@@ -15,6 +15,7 @@ import banner from '../../assets/banner.png'
 
 export function Home() {
   const [data, setData] = useState([])
+  const [search, setSearch] = useState('')
 
   const navigate = useNavigate()
 
@@ -24,16 +25,16 @@ export function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await api.get('/foods?title')
+      const response = await api.get(`/foods?title=${search}`)
       setData(response.data)
     }
 
     fetchData()
-  }, [])
+  }, [search])
 
   return (
     <Container>
-      <Header />
+      <Header onChange={e => setSearch(e.target.value)} />
 
       <div className="wrapper">
         <img src={banner} alt="" className="banner" />
