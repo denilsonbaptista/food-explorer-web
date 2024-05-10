@@ -6,6 +6,9 @@ export const Container = styled.div`
 
   padding: 1rem 1.6rem;
 
+  height: 3rem;
+  width: 100%;
+
   border-radius: 0.8rem;
 
   background-color: ${({ theme, $isNew }) =>
@@ -34,5 +37,9 @@ export const Container = styled.div`
   > button {
     background-color: transparent;
     border: none;
+  }
+
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
+    width: 14rem;
   }
 `

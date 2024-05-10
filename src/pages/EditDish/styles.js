@@ -159,9 +159,8 @@ export const Select = styled.select`
 
 export const Items = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 1.6rem;
-
-  height: 5rem;
 
   padding: 1rem;
 
