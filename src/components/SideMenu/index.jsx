@@ -1,6 +1,8 @@
 import { X } from '@phosphor-icons/react'
 
-import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { useAuth } from '../../hooks/auth'
 
 import { InputSearch } from '../InputSearch'
 import {
@@ -13,12 +15,19 @@ import {
   Button,
 } from './styles'
 
-export function SideMenu({ menuIsOpen, onCloseMenu }) {
-  useEffect(() => {
-    menuIsOpen
-      ? document.querySelector('body').classList.add('menu-open')
-      : document.querySelector('body').classList.remove('menu-open')
-  }, [menuIsOpen])
+export function SideMenu({ menuIsOpen, onCloseMenu, onChange }) {
+  const { signOut } = useAuth()
+
+  const navigation = useNavigate()
+
+  function handleNewDish() {
+    navigation('/new')
+  }
+
+  function handleSignOut() {
+    navigation('/')
+    signOut()
+  }
 
   return (
     <Container data-menu-is-open={menuIsOpen}>
@@ -35,12 +44,13 @@ export function SideMenu({ menuIsOpen, onCloseMenu }) {
         <InputSearch
           type="text"
           placeholder="Busque por pratos ou ingredientes"
+          onChange={onChange}
         />
       </Search>
 
       <Buttons>
-        <Button>Novo prato</Button>
-        <Button>Sair</Button>
+        <Button onClick={handleNewDish}>Novo prato</Button>
+        <Button onClick={handleSignOut}>Sair</Button>
       </Buttons>
     </Container>
   )

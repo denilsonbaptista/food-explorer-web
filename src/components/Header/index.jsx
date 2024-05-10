@@ -27,6 +27,7 @@ export function Header({ onChange }) {
       <SideMenu
         menuIsOpen={menuIsOpen}
         onCloseMenu={() => setMenuIsOpen(false)}
+        onChange={onChange}
       />
 
       <div className="wrapper">
