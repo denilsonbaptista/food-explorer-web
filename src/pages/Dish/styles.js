@@ -122,3 +122,51 @@ export const EditDish = styled(Link)`
   color: ${({ theme }) => theme.colors.light_100};
   background-color: ${({ theme }) => theme.colors.tints.tomato_100};
 `
+
+export const Include = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  margin-top: 1.5rem;
+
+  max-width: 30rem;
+`
+
+export const Count = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+
+  color: ${({ theme }) => theme.colors.light_100};
+`
+
+export const Decrement = styled.button`
+  display: flex;
+  align-items: center;
+
+  background: none;
+  border: none;
+
+  font-size: 2.4rem;
+  color: ${({ theme }) => theme.colors.light_100};
+`
+
+export const Increment = styled.button`
+  display: flex;
+  align-items: center;
+
+  background: none;
+  border: none;
+
+  font-size: 2.4rem;
+  color: ${({ theme }) => theme.colors.light_100};
+`

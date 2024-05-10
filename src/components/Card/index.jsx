@@ -1,10 +1,25 @@
-import { PencilSimple } from '@phosphor-icons/react'
+import { PencilSimple, Plus, Minus } from '@phosphor-icons/react'
 
-import { Container, Content, LinkToDish } from './styles'
+import { useAuth } from '../../hooks/auth'
+import { USER_ROLE } from '../../utils/roles'
+
+import {
+  Container,
+  Content,
+  LinkToDish,
+  Include,
+  Count,
+  Decrement,
+  Increment,
+} from './styles'
 
 import { api } from '../../services/api'
 
+import { Button } from '../Button'
+
 export function Card({ data, ...rest }) {
+  const { user } = useAuth()
+
   const imgaUrl = `${api.defaults.baseURL}/files/${data.image_url}`
 
   return (
@@ -17,9 +32,27 @@ export function Card({ data, ...rest }) {
         <span>R$ {data.price}</span>
       </Content>
 
-      <LinkToDish to={`/edit/${data.id}`}>
-        <PencilSimple />
-      </LinkToDish>
+      {[USER_ROLE.ADMIN].includes(user.role) && (
+        <LinkToDish to={`/edit/${data.id}`}>
+          <PencilSimple />
+        </LinkToDish>
+      )}
+
+      {[USER_ROLE.CUSTOMER].includes(user.role) && (
+        <Include>
+          <Count>
+            <Decrement>
+              <Minus />
+            </Decrement>
+            <span>01</span>
+            <Increment>
+              <Plus />
+            </Increment>
+          </Count>
+
+          <Button title="incluir" />
+        </Include>
+      )}
     </Container>
   )
 }

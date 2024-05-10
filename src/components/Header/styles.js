@@ -11,7 +11,7 @@ export const Container = styled.header`
 
   div.wrapper {
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: max-content 1fr max-content;
     align-items: center;
   }
 
@@ -109,6 +109,43 @@ export const Menu = styled.button`
   }
 `
 
+export const Orders = styled.div`
+  font-size: 2.4rem;
+  color: ${({ theme }) => theme.colors.light_100};
+
+  position: relative;
+
+  > div {
+    width: 1.6rem;
+    height: 1.6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: ${({ theme }) => theme.colors.tints.tomato_100};
+    border-radius: 9.9rem;
+
+    position: absolute;
+    top: -0.5rem;
+    right: -0.2rem;
+
+    padding: 0.2rem 0.2rem;
+
+    > span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 2.4rem;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
+    display: none;
+  }
+`
+
 export const Search = styled.div`
   display: none;
 
@@ -117,7 +154,7 @@ export const Search = styled.div`
   }
 `
 
-export const NewDish = styled(Link)`
+export const NewDish = styled.button`
   width: 100%;
 
   padding: 1.2rem 0;
@@ -138,7 +175,14 @@ export const NewDish = styled(Link)`
   display: none;
 
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    > svg {
+      font-size: 2.4rem;
+    }
   }
 `
 

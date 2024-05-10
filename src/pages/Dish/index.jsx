@@ -1,21 +1,31 @@
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { CaretLeft } from '@phosphor-icons/react'
+import { CaretLeft, Minus, Plus } from '@phosphor-icons/react'
+
+import { useAuth } from '../../hooks/auth'
+import { USER_ROLE } from '../../utils/roles'
 
 import { api } from '../../services/api'
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Tag } from '../../components/Tag'
+import { Button } from '../../components/Button'
 import {
   Container,
   Details,
   Descriptions,
   Ingredient,
   EditDish,
+  Include,
+  Count,
+  Decrement,
+  Increment,
 } from './styles'
 
 export function Dish() {
+  const { user } = useAuth()
+
   const [data, setData] = useState('')
 
   const params = useParams()
@@ -56,7 +66,25 @@ export function Dish() {
               </Ingredient>
             )}
 
-            <EditDish to={`/edit/${params.id}`}>Editar prato</EditDish>
+            {[USER_ROLE.ADMIN].includes(user.role) && (
+              <EditDish to={`/edit/${params.id}`}>Editar prato</EditDish>
+            )}
+
+            {[USER_ROLE.CUSTOMER].includes(user.role) && (
+              <Include>
+                <Count>
+                  <Decrement>
+                    <Minus />
+                  </Decrement>
+                  <span>01</span>
+                  <Increment>
+                    <Plus />
+                  </Increment>
+                </Count>
+
+                <Button title="incluir" />
+              </Include>
+            )}
           </Descriptions>
         </Details>
       </div>

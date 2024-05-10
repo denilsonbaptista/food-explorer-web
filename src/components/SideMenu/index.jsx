@@ -3,6 +3,7 @@ import { X } from '@phosphor-icons/react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/auth'
+import { USER_ROLE } from '../../utils/roles'
 
 import { InputSearch } from '../InputSearch'
 import {
@@ -16,7 +17,7 @@ import {
 } from './styles'
 
 export function SideMenu({ menuIsOpen, onCloseMenu, onChange }) {
-  const { signOut } = useAuth()
+  const { user, signOut } = useAuth()
 
   const navigation = useNavigate()
 
@@ -49,7 +50,9 @@ export function SideMenu({ menuIsOpen, onCloseMenu, onChange }) {
       </Search>
 
       <Buttons>
-        <Button onClick={handleNewDish}>Novo prato</Button>
+        {[USER_ROLE.ADMIN].includes(user.role) && (
+          <Button onClick={handleNewDish}>Novo prato</Button>
+        )}
         <Button onClick={handleSignOut}>Sair</Button>
       </Buttons>
     </Container>

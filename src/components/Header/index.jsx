@@ -3,16 +3,25 @@ import logo from '../../assets/polygon.svg'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { List, SignOut } from '@phosphor-icons/react'
+import { List, SignOut, Receipt } from '@phosphor-icons/react'
 
 import { useAuth } from '../../hooks/auth'
+import { USER_ROLE } from '../../utils/roles'
 
 import { SideMenu } from '../SideMenu'
 import { InputSearch } from '../InputSearch'
-import { Container, Content, Search, Menu, NewDish, Logout } from './styles'
+import {
+  Container,
+  Content,
+  Search,
+  Menu,
+  NewDish,
+  Logout,
+  Orders,
+} from './styles'
 
 export function Header({ onChange }) {
-  const { signOut } = useAuth()
+  const { user, signOut } = useAuth()
   const navigation = useNavigate()
 
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -20,6 +29,10 @@ export function Header({ onChange }) {
   function handleSignOut() {
     navigation('/')
     signOut()
+  }
+
+  function handleNewDish() {
+    navigation('/new')
   }
 
   return (
@@ -38,8 +51,21 @@ export function Header({ onChange }) {
         <Content to="/">
           <img src={logo} alt="Logo food explorer" />
           <h1>food explorer</h1>
-          <span>admin</span>
+          {[USER_ROLE.ADMIN].includes(user.role) && (
+            <>
+              <span>admin</span>
+            </>
+          )}
         </Content>
+
+        {[USER_ROLE.CUSTOMER].includes(user.role) && (
+          <Orders>
+            <div>
+              <span>01</span>
+            </div>
+            <Receipt />
+          </Orders>
+        )}
 
         <Search>
           <InputSearch
@@ -49,7 +75,16 @@ export function Header({ onChange }) {
           />
         </Search>
 
-        <NewDish to="/new"> Novo Prato</NewDish>
+        {[USER_ROLE.ADMIN].includes(user.role) && (
+          <NewDish onClick={handleNewDish}> Novo Prato</NewDish>
+        )}
+
+        {[USER_ROLE.CUSTOMER].includes(user.role) && (
+          <NewDish>
+            <Receipt />
+            Pedidos (0)
+          </NewDish>
+        )}
 
         <Logout onClick={handleSignOut}>
           <SignOut />
