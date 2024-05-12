@@ -16,11 +16,32 @@ import banner from '../../assets/banner.png'
 export function Home() {
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
+  const [orders, setOrders] = useState([])
 
   const navigate = useNavigate()
 
   function handleDish(id) {
     navigate(`/dish/${id}`)
+  }
+
+  function addToOrder(item, quantity) {
+    // Verifique se o item já está no pedido
+    const existingItemIndex = orders.findIndex(order => order.id === item.id)
+
+    if (existingItemIndex !== -1) {
+      // Se o item já existe, atualize a quantidade
+      const updatedOrders = [...orders]
+      updatedOrders[existingItemIndex].quantity += quantity
+      setOrders(updatedOrders)
+      localStorage.setItem('orders', JSON.stringify(updatedOrders))
+    } else {
+      // Se o item ainda não estiver no pedido, adicione-o
+      setOrders(prevOrders => [...prevOrders, { ...item, quantity }])
+      localStorage.setItem(
+        'orders',
+        JSON.stringify([...orders, { ...item, quantity }]),
+      )
+    }
   }
 
   useEffect(() => {
@@ -32,9 +53,16 @@ export function Home() {
     fetchData()
   }, [search])
 
+  useEffect(() => {
+    const storedOrders = JSON.parse(localStorage.getItem('orders'))
+    if (storedOrders) {
+      setOrders(storedOrders)
+    }
+  }, [])
+
   return (
     <Container>
-      <Header onChange={e => setSearch(e.target.value)} />
+      <Header orders={orders} onChange={e => setSearch(e.target.value)} />
 
       <div className="wrapper">
         <img src={banner} alt="" className="banner" />
@@ -69,7 +97,11 @@ export function Home() {
                   >
                     {section.foods.map(food => (
                       <Slide key={food.id}>
-                        <Card data={food} onClick={() => handleDish(food.id)} />
+                        <Card
+                          data={food}
+                          onClick={() => handleDish(food.id)}
+                          onAddToOrder={addToOrder}
+                        />
                       </Slide>
                     ))}
                   </Slider>

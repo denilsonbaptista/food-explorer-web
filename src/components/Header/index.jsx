@@ -1,6 +1,6 @@
 import logo from '../../assets/polygon.svg'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { List, SignOut, Receipt } from '@phosphor-icons/react'
@@ -20,7 +20,7 @@ import {
   Orders,
 } from './styles'
 
-export function Header({ onChange }) {
+export function Header({ orders, onChange }) {
   const { user, signOut } = useAuth()
   const navigation = useNavigate()
 
@@ -61,7 +61,7 @@ export function Header({ onChange }) {
         {[USER_ROLE.CUSTOMER].includes(user.role) && (
           <Orders>
             <div>
-              <span>01</span>
+              <span>{orders.length}</span>
             </div>
             <Receipt />
           </Orders>
@@ -82,7 +82,7 @@ export function Header({ onChange }) {
         {[USER_ROLE.CUSTOMER].includes(user.role) && (
           <NewDish>
             <Receipt />
-            Pedidos (0)
+            Pedidos ({orders.length})
           </NewDish>
         )}
 

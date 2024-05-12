@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { PencilSimple, Plus, Minus } from '@phosphor-icons/react'
 
 import { useAuth } from '../../hooks/auth'
@@ -17,10 +18,32 @@ import { api } from '../../services/api'
 
 import { Button } from '../Button'
 
-export function Card({ data, ...rest }) {
+export function Card({ data, onAddToOrder, ...rest }) {
   const { user } = useAuth()
+  const [count, setCount] = useState(0)
 
   const imgaUrl = `${api.defaults.baseURL}/files/${data.image_url}`
+
+  function incrementDish() {
+    const increment = count + 1
+
+    setCount(increment)
+  }
+
+  function decrementDish() {
+    const decrement = count - 1
+
+    if (decrement < 0) {
+      return
+    }
+
+    setCount(decrement)
+  }
+
+  function handleAddToOrder() {
+    onAddToOrder(data, count)
+    setCount(0)
+  }
 
   return (
     <Container>
@@ -41,16 +64,16 @@ export function Card({ data, ...rest }) {
       {[USER_ROLE.CUSTOMER].includes(user.role) && (
         <Include>
           <Count>
-            <Decrement>
+            <Decrement onClick={decrementDish}>
               <Minus />
             </Decrement>
-            <span>01</span>
-            <Increment>
+            <span>{count}</span>
+            <Increment onClick={incrementDish}>
               <Plus />
             </Increment>
           </Count>
 
-          <Button title="incluir" />
+          <Button title="incluir" onClick={handleAddToOrder} />
         </Include>
       )}
     </Container>

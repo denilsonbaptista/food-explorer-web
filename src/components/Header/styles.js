@@ -2,6 +2,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.header`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   display: flex;
   align-items: center;
 
