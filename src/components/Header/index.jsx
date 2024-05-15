@@ -1,6 +1,6 @@
 import logo from '../../assets/polygon.svg'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { List, SignOut, Receipt } from '@phosphor-icons/react'
@@ -8,6 +8,7 @@ import { List, SignOut, Receipt } from '@phosphor-icons/react'
 import { useAuth } from '../../hooks/auth'
 import { USER_ROLE } from '../../utils/roles'
 
+import { CustomDialog } from '../CustomDialog/index.jsx'
 import { SideMenu } from '../SideMenu'
 import { InputSearch } from '../InputSearch'
 import {
@@ -18,9 +19,9 @@ import {
   NewDish,
   Logout,
   Orders,
-} from './styles'
+} from './styles.js'
 
-export function Header({ orders, onChange }) {
+export function Header({ orders, onChange, ondeleteOrder, onFinalizeOrders }) {
   const { user, signOut } = useAuth()
   const navigation = useNavigate()
 
@@ -51,21 +52,17 @@ export function Header({ orders, onChange }) {
         <Content to="/">
           <img src={logo} alt="Logo food explorer" />
           <h1>food explorer</h1>
-          {[USER_ROLE.ADMIN].includes(user.role) && (
-            <>
-              <span>admin</span>
-            </>
-          )}
+          {[USER_ROLE.ADMIN].includes(user.role) && <span>admin</span>}
         </Content>
 
-        {[USER_ROLE.CUSTOMER].includes(user.role) && (
+        {/* {[USER_ROLE.CUSTOMER].includes(user.role) && (
           <Orders>
             <div>
               <span>{orders.length}</span>
             </div>
             <Receipt />
           </Orders>
-        )}
+        )} */}
 
         <Search>
           <InputSearch
@@ -80,10 +77,12 @@ export function Header({ orders, onChange }) {
         )}
 
         {[USER_ROLE.CUSTOMER].includes(user.role) && (
-          <NewDish>
-            <Receipt />
-            Pedidos ({orders.length})
-          </NewDish>
+          <CustomDialog
+            title={`Pedidos`}
+            orders={orders}
+            ondeleteOrder={ondeleteOrder}
+            onFinalizeOrders={onFinalizeOrders}
+          />
         )}
 
         <Logout onClick={handleSignOut}>

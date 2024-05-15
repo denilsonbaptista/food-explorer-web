@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { PencilSimple, Plus, Minus } from '@phosphor-icons/react'
-
 import { useAuth } from '../../hooks/auth'
 import { USER_ROLE } from '../../utils/roles'
-
 import {
   Container,
   Content,
@@ -13,34 +11,25 @@ import {
   Decrement,
   Increment,
 } from './styles'
-
 import { api } from '../../services/api'
-
 import { Button } from '../Button'
 
 export function Card({ data, onAddToOrder, ...rest }) {
   const { user } = useAuth()
   const [count, setCount] = useState(0)
+  const imgUrl = `${api.defaults.baseURL}/files/${data.image_url}`
 
-  const imgaUrl = `${api.defaults.baseURL}/files/${data.image_url}`
-
-  function incrementDish() {
-    const increment = count + 1
-
-    setCount(increment)
+  const incrementDish = () => {
+    setCount(count + 1)
   }
 
-  function decrementDish() {
-    const decrement = count - 1
-
-    if (decrement < 0) {
-      return
+  const decrementDish = () => {
+    if (count > 0) {
+      setCount(count - 1)
     }
-
-    setCount(decrement)
   }
 
-  function handleAddToOrder() {
+  const handleAddToOrderLocal = () => {
     onAddToOrder(data, count)
     setCount(0)
   }
@@ -48,8 +37,7 @@ export function Card({ data, onAddToOrder, ...rest }) {
   return (
     <Container>
       <Content type="button" {...rest}>
-        <img src={imgaUrl} alt="" />
-
+        <img src={imgUrl} alt="" />
         <h3>{data.name}</h3>
         <p>{data.description}</p>
         <span>R$ {data.price}</span>
@@ -72,8 +60,7 @@ export function Card({ data, onAddToOrder, ...rest }) {
               <Plus />
             </Increment>
           </Count>
-
-          <Button title="incluir" onClick={handleAddToOrder} />
+          <Button title="Incluir" onClick={handleAddToOrderLocal} />
         </Include>
       )}
     </Container>

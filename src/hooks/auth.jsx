@@ -27,6 +27,7 @@ function AuthProvider({ children }) {
 
   function signOut() {
     localStorage.removeItem('@food:user')
+    localStorage.removeItem('orders')
 
     setData({})
   }

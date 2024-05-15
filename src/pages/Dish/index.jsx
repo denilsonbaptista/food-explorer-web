@@ -26,7 +26,7 @@ import {
 export function Dish() {
   const { user } = useAuth()
 
-  const [data, setData] = useState('')
+  const [data, setData] = useState(0)
   const [count, setCount] = useState(0)
   const [orders, setOrders] = useState([])
 
@@ -34,24 +34,54 @@ export function Dish() {
 
   const imgUrl = `${api.defaults.baseURL}/files/${data.image_url}`
 
+  useEffect(() => {
+    async function fetchData() {
+      const response = await api.get(`/foods/${params.id}`)
+      setData(response.data)
+    }
+
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const storedOrders = JSON.parse(localStorage.getItem('orders'))
+    if (storedOrders) {
+      setOrders(storedOrders)
+    }
+  }, [])
+
   function addToOrder(item, quantity) {
-    // Verifique se o item já está no pedido
     const existingItemIndex = orders.findIndex(order => order.id === item.id)
 
     if (existingItemIndex !== -1) {
-      // Se o item já existe, atualize a quantidade
       const updatedOrders = [...orders]
       updatedOrders[existingItemIndex].quantity += quantity
       setOrders(updatedOrders)
+
       localStorage.setItem('orders', JSON.stringify(updatedOrders))
     } else {
-      // Se o item ainda não estiver no pedido, adicione-o
       setOrders(prevOrders => [...prevOrders, { ...item, quantity }])
+
       localStorage.setItem(
         'orders',
         JSON.stringify([...orders, { ...item, quantity }]),
       )
     }
+  }
+
+  function deleteOrder(id) {
+    const newOrders = orders.filter(order => order.id !== id)
+
+    setOrders(newOrders)
+
+    localStorage.setItem('orders', JSON.stringify(newOrders))
+  }
+
+  function handleFinalizeOrders() {
+    setOrders([])
+
+    localStorage.removeItem('orders')
+    alert('Pedido recebido com sucesso! Obrigado! Logo chegará em sua mesa!')
   }
 
   function incrementDish() {
@@ -75,25 +105,13 @@ export function Dish() {
     setCount(0)
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await api.get(`/foods/${params.id}`)
-      setData(response.data)
-    }
-
-    fetchData()
-  }, [])
-
-  useEffect(() => {
-    const storedOrders = JSON.parse(localStorage.getItem('orders'))
-    if (storedOrders) {
-      setOrders(storedOrders)
-    }
-  }, [])
-
   return (
     <Container>
-      <Header orders={orders} />
+      <Header
+        orders={orders}
+        ondeleteOrder={deleteOrder}
+        onFinalizeOrders={handleFinalizeOrders}
+      />
 
       <div className="wrapper">
         <Link to={-1}>

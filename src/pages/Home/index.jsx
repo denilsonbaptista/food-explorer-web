@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Section } from '../../components/Section'
 import { Card } from '../../components/Card'
-import { Container } from './styles'
-
 import { Slider, Slide } from '../../components/Slider'
+
+import { Container } from './styles'
 
 import { api } from '../../services/api'
 
@@ -20,36 +20,7 @@ export function Home() {
 
   const navigate = useNavigate()
 
-  function handleDish(id) {
-    navigate(`/dish/${id}`)
-  }
-
-  function addToOrder(item, quantity) {
-    // Verifique se o item já está no pedido
-    const existingItemIndex = orders.findIndex(order => order.id === item.id)
-
-    if (existingItemIndex !== -1) {
-      // Se o item já existe, atualize a quantidade
-      const updatedOrders = [...orders]
-      updatedOrders[existingItemIndex].quantity += quantity
-      setOrders(updatedOrders)
-      localStorage.setItem('orders', JSON.stringify(updatedOrders))
-    } else {
-      // Se o item ainda não estiver no pedido, adicione-o
-      setOrders(prevOrders => [...prevOrders, { ...item, quantity }])
-      localStorage.setItem(
-        'orders',
-        JSON.stringify([...orders, { ...item, quantity }]),
-      )
-    }
-  }
-
   useEffect(() => {
-    async function fetchData() {
-      const response = await api.get(`/foods?title=${search}`)
-      setData(response.data)
-    }
-
     fetchData()
   }, [search])
 
@@ -60,13 +31,59 @@ export function Home() {
     }
   }, [])
 
+  function handleDish(id) {
+    navigate(`/dish/${id}`)
+  }
+
+  async function fetchData() {
+    const response = await api.get(`/foods?title=${search}`)
+    setData(response.data)
+  }
+
+  function addToOrder(item, quantity) {
+    const existingItemIndex = orders.findIndex(order => order.id === item.id)
+
+    if (existingItemIndex !== -1) {
+      const updatedOrders = [...orders]
+      updatedOrders[existingItemIndex].quantity += quantity
+      setOrders(updatedOrders)
+
+      localStorage.setItem('orders', JSON.stringify(updatedOrders))
+    } else {
+      setOrders(prevOrders => [...prevOrders, { ...item, quantity }])
+
+      localStorage.setItem(
+        'orders',
+        JSON.stringify([...orders, { ...item, quantity }]),
+      )
+    }
+  }
+
+  function deleteOrder(id) {
+    const newOrders = orders.filter(order => order.id !== id)
+
+    setOrders(newOrders)
+
+    localStorage.setItem('orders', JSON.stringify(newOrders))
+  }
+
+  function handleFinalizeOrders() {
+    setOrders([])
+
+    localStorage.removeItem('orders')
+    alert('Pedido recebido com sucesso! Obrigado! Logo chegará em sua mesa!')
+  }
+
   return (
     <Container>
-      <Header orders={orders} onChange={e => setSearch(e.target.value)} />
-
+      <Header
+        orders={orders}
+        onChange={e => setSearch(e.target.value)}
+        ondeleteOrder={deleteOrder}
+        onFinalizeOrders={handleFinalizeOrders}
+      />
       <div className="wrapper">
         <img src={banner} alt="" className="banner" />
-
         {data &&
           data.map(
             section =>
@@ -109,7 +126,6 @@ export function Home() {
               ),
           )}
       </div>
-
       <div className="footer">
         <Footer />
       </div>
