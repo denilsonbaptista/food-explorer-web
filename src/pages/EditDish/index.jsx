@@ -26,7 +26,6 @@ import {
 
 export function EditDish() {
   const [image, setImage] = useState(null)
-  console.log(typeof image)
 
   const [name, setName] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
