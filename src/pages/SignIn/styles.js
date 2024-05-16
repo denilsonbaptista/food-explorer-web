@@ -32,7 +32,7 @@ export const Header = styled.header`
 
   margin-bottom: 7.2rem;
 
-  > img {
+  > svg {
     width: 5.6rem;
     height: 5.6rem;
   }
@@ -40,7 +40,7 @@ export const Header = styled.header`
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     font-size: 2.5rem;
 
-    > img {
+    > svg {
       width: 5.6rem;
       height: 5.6rem;
     }

@@ -68,6 +68,11 @@ export const Content = styled(Link)`
     line-height: 160%;
   }
 
+  svg {
+    width: 3rem;
+    height: 3rem;
+  }
+
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     gap: initial;
 

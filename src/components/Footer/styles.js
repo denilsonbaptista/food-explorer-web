@@ -42,7 +42,7 @@ export const Logotype = styled.div`
   align-items: center;
   gap: 0.6rem;
 
-  > img {
+  > svg {
     width: 2rem;
     height: 2rem;
   }
@@ -50,9 +50,9 @@ export const Logotype = styled.div`
   @media (min-width: ${({ theme }) => theme.screens.lg}) {
     gap: 1rem;
 
-    > img {
-      width: 2.8rem;
-      height: 2.8rem;
+    > svg {
+      width: 3rem;
+      height: 3rem;
     }
   }
 `

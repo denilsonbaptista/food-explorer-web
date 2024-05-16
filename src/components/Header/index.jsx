@@ -1,9 +1,7 @@
-import logo from '../../assets/polygon.svg'
-
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { List, SignOut, Receipt } from '@phosphor-icons/react'
+import { List, SignOut } from '@phosphor-icons/react'
 
 import { useAuth } from '../../hooks/auth'
 import { USER_ROLE } from '../../utils/roles'
@@ -11,15 +9,7 @@ import { USER_ROLE } from '../../utils/roles'
 import { CustomDialog } from '../CustomDialog/index.jsx'
 import { SideMenu } from '../SideMenu'
 import { InputSearch } from '../InputSearch'
-import {
-  Container,
-  Content,
-  Search,
-  Menu,
-  NewDish,
-  Logout,
-  Orders,
-} from './styles.js'
+import { Container, Content, Search, Menu, NewDish, Logout } from './styles.js'
 
 export function Header({ orders, onChange, ondeleteOrder, onFinalizeOrders }) {
   const { user, signOut } = useAuth()
@@ -50,19 +40,22 @@ export function Header({ orders, onChange, ondeleteOrder, onFinalizeOrders }) {
         </Menu>
 
         <Content to="/">
-          <img src={logo} alt="Logo food explorer" />
+          <svg
+            width="22"
+            height="26"
+            viewBox="0 0 22 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="Polygon 1"
+              d="M10.6935 0.5L21.3513 6.65327V18.9598L10.6935 25.1131L0.0357265 18.9598V6.65327L10.6935 0.5Z"
+              fill="#065E7C"
+            />
+          </svg>
           <h1>food explorer</h1>
           {[USER_ROLE.ADMIN].includes(user.role) && <span>admin</span>}
         </Content>
-
-        {/* {[USER_ROLE.CUSTOMER].includes(user.role) && (
-          <Orders>
-            <div>
-              <span>{orders.length}</span>
-            </div>
-            <Receipt />
-          </Orders>
-        )} */}
 
         <Search>
           <InputSearch

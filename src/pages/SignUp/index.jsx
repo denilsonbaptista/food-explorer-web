@@ -8,8 +8,6 @@ import { Button } from '../../components/Button'
 
 import { Container, Header, Form, Wrapper } from './styles'
 
-import logo from '../../assets/polygon.svg'
-
 export function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -44,7 +42,20 @@ export function SignUp() {
     <Container>
       <div className="wrapper">
         <Header>
-          <img src={logo} alt="logo" />
+          <svg
+            width="22"
+            height="26"
+            viewBox="0 0 22 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="Polygon 1"
+              d="M10.6935 0.5L21.3513 6.65327V18.9598L10.6935 25.1131L0.0357265 18.9598V6.65327L10.6935 0.5Z"
+              fill="#065E7C"
+            />
+          </svg>
+
           <h1>food explorer</h1>
         </Header>
 
