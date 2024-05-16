@@ -26,6 +26,7 @@ import {
 
 export function EditDish() {
   const [image, setImage] = useState(null)
+  console.log(typeof image)
 
   const [name, setName] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
@@ -118,6 +119,7 @@ export function EditDish() {
       setPrice(response.data.price)
       setDescription(response.data.description)
       setSelectedCategory(response.data.categories.name)
+      setImage(response.data.image_url)
 
       const ingredientNames = response.data.ingredients.map(
         ingredient => ingredient.name,
@@ -150,7 +152,11 @@ export function EditDish() {
                   <File>
                     <label htmlFor="file-dish">
                       <UploadSimple size={24} weight="bold" />
-                      Selecione imagem
+                      <p>
+                        {image && typeof image === 'object' && image.name
+                          ? image.name
+                          : image}{' '}
+                      </p>
                     </label>
                     <Input
                       id="file-dish"

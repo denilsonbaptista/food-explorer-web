@@ -129,6 +129,12 @@ export const File = styled.div`
 
     cursor: pointer;
   }
+
+  p {
+    max-width: 16rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 `
 
 export const Select = styled.select`

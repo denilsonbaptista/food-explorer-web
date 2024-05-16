@@ -10,7 +10,19 @@ import { Button } from '../../components/Button'
 import { Textarea } from '../../components/Textarea'
 import { IngredientItem } from '../../components/IngredientItem'
 import { Footer } from '../../components/Footer'
-import { Form, Container, Content, Wrapper, File, Select, Items, Price, Buttons, RowOne, RowTwo } from './styles'
+import {
+  Form,
+  Container,
+  Content,
+  Wrapper,
+  File,
+  Select,
+  Items,
+  Price,
+  Buttons,
+  RowOne,
+  RowTwo,
+} from './styles'
 
 export function NewDish() {
   const [image, setImage] = useState(null)
@@ -48,7 +60,13 @@ export function NewDish() {
       return alert('Selecione uma imagem para o prato')
     }
 
-    if (!dishName || !selectedCategory || ingredients.length === 0 || !price || !description) {
+    if (
+      !dishName ||
+      !selectedCategory ||
+      ingredients.length === 0 ||
+      !price ||
+      !description
+    ) {
       return alert('Preencha todos os campos')
     }
 
@@ -111,9 +129,13 @@ export function NewDish() {
                   <File>
                     <label htmlFor="file-dish">
                       <UploadSimple size={24} weight="bold" />
-                      Selecione imagem
+                      <p>{image ? image.name : 'Selecione imagem'}</p>
                     </label>
-                    <Input id="file-dish" type="file" onChange={e => setImage(e.target.files[0])} />
+                    <Input
+                      id="file-dish"
+                      type="file"
+                      onChange={e => setImage(e.target.files[0])}
+                    />
                   </File>
                 </Wrapper>
 
@@ -129,7 +151,11 @@ export function NewDish() {
 
                 <Wrapper>
                   <label htmlFor="category">Categoria</label>
-                  <Select id="category" value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>
+                  <Select
+                    id="category"
+                    value={selectedCategory}
+                    onChange={e => setSelectedCategory(e.target.value)}
+                  >
                     <option value="">Selecione</option>
                     <option value="Refeições">Refeições</option>
                     <option value="Sobremesas">Sobremesas</option>
@@ -163,7 +189,12 @@ export function NewDish() {
                   <label htmlFor="price">Preço</label>
                   <Price>
                     <span>R$</span>
-                    <input id="price" type="text" placeholder="00,00" onChange={priceChange} />
+                    <input
+                      id="price"
+                      type="text"
+                      placeholder="00,00"
+                      onChange={priceChange}
+                    />
                   </Price>
                 </Wrapper>
               </RowTwo>
