@@ -28,11 +28,11 @@ The admin is the person responsible for the restaurant and can create, view, edi
 The user can view all registered dishes and, when clicking on a dish, will be redirected to a new screen with more detailed information about it.
 
 Admin user access: <br />
-username: admin <br />
+username: admin@email.com <br />
 password: 123 <br />
 
 User access: <br />
-username: user <br />
+username: user@email.com <br />
 password: 123 <br />
 
 ## Tech Stack
