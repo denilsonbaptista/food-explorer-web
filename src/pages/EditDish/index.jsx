@@ -26,6 +26,7 @@ import {
 
 export function EditDish() {
   const [image, setImage] = useState(null)
+  const [imageUrl, setImageUrl] = useState('')
 
   const [name, setName] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
@@ -73,7 +74,7 @@ export function EditDish() {
     try {
       let image_url
 
-      if (image) {
+      if (typeof image === 'object') {
         const formData = new FormData()
         formData.append('image', image)
 
