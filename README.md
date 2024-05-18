@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="./.github/preview.png" />
-</p>
+https://github.com/denilsonbaptista/food-explorer-web/assets/50973247/a0a2294a-9952-4cb2-ae32-8d9c93e633d1
+
 
 <h3 align="center">food explorer</h3>
 
